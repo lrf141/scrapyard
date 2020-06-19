@@ -1,18 +1,25 @@
 package main
 
 import (
+	"context"
 	"log"
-	"net"
 )
 
 func main() {
-	srv, err := net.Listen("tcp", "localhost:8080")
+
+	info := &ServerInfo{
+		Addr: "localhost",
+		Port: "8080",
+		Proto: "tcp",
+	}
+
+	srv, err := ServerInit(info, context.Background())
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	for {
-		conn, err := srv.Accept()
+		conn, err := srv.Sock.Accept()
 		if err != nil {
 			continue
 		}
