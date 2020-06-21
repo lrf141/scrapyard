@@ -19,8 +19,9 @@ func exec(conn net.Conn) {
 		}
 	}
 
-	fmt.Printf("Client> %s\n", buf)
-	fmt.Printf("Clinet> Size %d\n", n)
+	req := string(buf)
+	reqStruct := parse(req)
+	fmt.Printf("%v\n", reqStruct)
 
 	n, err = conn.Write(buf[:n])
 	if err != nil {
