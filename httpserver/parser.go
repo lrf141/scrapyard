@@ -4,9 +4,11 @@ import (
 	"strings"
 )
 
+const CRLF = "\r\n"
+
 func parse(raw string) *Request {
 
-	rows := strings.Split(raw, "\n")
+	rows := strings.Split(raw, CRLF)
 	status := strings.Split(rows[0], " ")
 	bodyPos := 0
 	headers := map[string]string{}
