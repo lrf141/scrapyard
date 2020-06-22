@@ -19,9 +19,9 @@ func exec(conn net.Conn) {
 		}
 	}
 
-	req := string(buf)
-	reqStruct := parse(req)
-	fmt.Printf("%v\n", reqStruct)
+	rawReq := string(buf)
+	req := parse(rawReq)
+	fmt.Printf("%v\n", req)
 
 	n, err = conn.Write(buf[:n])
 	if err != nil {
