@@ -13,7 +13,7 @@ func parse(raw string) *Request {
 	bodyPos := 0
 	headers := map[string]string{}
 	for index, row := range rows[1:] {
-		if row == "\n" {
+		if row == "" {
 			bodyPos = index
 			break
 		}
@@ -23,7 +23,7 @@ func parse(raw string) *Request {
 		}
 	}
 	body := ""
-	for _, row := range rows[bodyPos:] {
+	for _, row := range rows[bodyPos+1:] {
 		body += row
 	}
 	return &Request{

@@ -22,6 +22,8 @@ func exec(conn net.Conn) {
 	req := string(buf)
 	reqStruct := parse(req)
 	fmt.Printf("%v\n", reqStruct)
+	fmt.Println("body")
+	fmt.Println(reqStruct.Body)
 
 	n, err = conn.Write(buf[:n])
 	if err != nil {
